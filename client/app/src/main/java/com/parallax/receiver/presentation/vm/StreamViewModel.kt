@@ -63,6 +63,8 @@ class StreamViewModel(
         val endpoint = QrParser.parse(payload) ?: return
         setStreamEndpoint.setHost(endpoint.host)
         setStreamEndpoint.setControlPort(endpoint.controlPort)
+        endpoint.pin?.let { setStreamEndpoint.setAccessPin(it) }
+        endpoint.streamPort?.let { setStreamEndpoint.setStreamPort(it) }
     }
 
     fun onSurfaceAvailable(surface: Surface) {
